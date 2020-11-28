@@ -1,0 +1,104 @@
+---
+layout: base.njk
+title: Hello World
+---
+
+{% raw %}
+  <div id="app" class="wrapper">
+    <label class="upload">
+      <span>😎</span>
+      <input type="file" @change="load"/>
+    </label>
+
+    <table class="table--striped">
+      <caption>Hours by Name by Job</caption>
+
+      <thead>
+        <tr>
+          <th>Client</th>
+          <th v-for="(row, prop) in tpeople">{{ prop  }}</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr v-for="(row, prop) in tdata">
+          <th :title="prop">{{ prop | acronym }}</th>
+          <td v-for="person in row">
+            {{ person.total | decimals }}
+          </td>
+        </tr>
+
+        <tr>
+          <th>Downtime</th>
+          <td v-for="person in tpeople">
+            {{ personDowntime(person) | decimals }}
+          </td>
+        </tr>
+        <tr>
+          <th>OOO</th>
+          <td v-for="person in tpeople">
+            <input v-model="person.ooo" @input="$forceUpdate(); generateChart();"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <caption>Billable Utilization</caption>
+
+      <thead>
+        <tr class="bg--blue">
+          <td></td>
+          <td v-for="(row, prop) in tpeople">{{ prop }}</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th class="highlightblue">Capacity</th>
+          <td v-for="person in tpeople">
+            <input v-model="cap" @input="generateChart"/>
+          </td>
+        </tr>
+        <tr class="highlightblue">
+          <th>Billable</th>
+          <td v-for="person in tpeople">{{ person.billable | decimals }}</td>
+        </tr>
+        <tr>
+          <th class="highlightblue">Nonbillable</th>
+          <td v-for="person in tpeople">{{ person.nonbillable | decimals }}</td>
+        </tr>
+        <tr class="sepbot">
+          <th title="Billable + Nonbillable + OOO" class="highlightblue">Total</th>
+          <td v-for="person in tpeople">
+            <strong>{{ personTotal(person) | decimals }}</strong>
+          </td>
+        </tr>
+        <tr class="septop">
+          <th title="(Billable / (Billable+Nonbillable)) * 100">Billable%</th>
+          <td v-for="person in tpeople">{{ person.billable / person.total * 100 | decimals }}%</td>
+        </tr>
+        <tr>
+          <th title="(Nonbillable / (Billable+Nonbillable)) * 100">Nonbillable%</th>
+          <td v-for="person in tpeople">{{ person.nonbillable / person.total * 100 | decimals }}%</td>
+        </tr>
+        <tr>
+          <th title="(Total / Capacity) * 100">Cap%</th>
+          <td v-for="person in tpeople">{{ personTotal(person) / cap * 100 | decimals }}%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="printbreak"></div>
+
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <canvas id="myChart" width="400" height="400"></canvas>
+      </div>
+    </div>
+
+    <!--
+    <a href="javascript:;" id="downloadAnchorElem" @click="download">download</a>
+    -->
+  </div>
+{% endraw %}

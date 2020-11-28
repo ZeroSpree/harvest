@@ -1,0 +1,98 @@
+caption,
+.caption {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 56px 0 24px;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+
+  thead {
+    background: $gray;
+
+    th {
+      padding: 4px 2px;
+      text-transform: uppercase;
+      font-size: 11px;
+      border-bottom: 1px solid #b1adac;
+      border-top: 1px solid #b1adac;
+
+      &:last-child {
+        border-right: 1px solid #b1adac;
+      }
+    }
+  }
+
+  th:first-child {
+    text-align: right;
+    border-left: 1px solid #b1adac;
+  }
+
+  td {
+    padding: 4px 2px;
+    border: 1px solid $border;
+
+    &:only-child {
+      border: 0;
+    }
+
+    &:last-child {
+      border-right-color: #b1adac;
+    }
+  }
+
+  tr:last-child {
+    td,
+    th {
+      border-bottom: 1px solid #b1adac;
+    }
+  }
+
+  &.table--striped tbody {
+    tr:nth-child(odd) {
+      background: $bg;
+    }
+  }
+
+  tbody,
+  tfoot {
+    th {
+      text-align: right;
+      padding-right: 8px;
+      padding-left: 8px;
+      border-right: 1px solid #b1adac;
+    }
+  }
+
+  .bg--blue td,
+  .bg--blue th {
+    background: $blue;
+    color: $white;
+    border-width: 0;
+
+    &:last-child {
+      border-right-width: 1px;
+    }
+  }
+
+  .highlightblue {
+    background: $bluelight;
+  }
+
+  .sepbot td {
+    border-bottom: 1px solid $black;
+  }
+
+  input {
+    text-align: center;
+    border: 0;
+    background: none;
+    font: inherit;
+    width: 100%;
+    display: block;
+    padding: 0;
+  }
+}

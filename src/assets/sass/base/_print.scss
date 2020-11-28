@@ -1,0 +1,30 @@
+@media print {
+  @page {
+    margin: 0;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  table {
+    page-break-inside: auto;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  .printbreak {
+    page-break-before: always;
+  }
+
+  .upload {
+    display: none;
+  }
+
+  .col-md-6 {
+    width: 100vw !important;
+  }
+}

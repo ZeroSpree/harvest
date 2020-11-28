@@ -1,0 +1,6 @@
+# dependencies installed by npm
+node_modules
+
+# secrets and errors
+src/assets/js/demodata.json
+

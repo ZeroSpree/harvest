@@ -1,0 +1,16 @@
+.upload {
+  cursor: pointer;
+  font-size: 20px;
+
+  span {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 12px;
+  }
+
+  input {
+    display: none;
+  }
+}
